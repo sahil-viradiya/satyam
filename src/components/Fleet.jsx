@@ -4,13 +4,33 @@ import { ripple, scrollTo } from '../lib/ui.js'
 
 const CARS = [
   { name: 'Maruti Swift', type: 'Hatchback', price: '₹799', color: '#FF6B00' },
-  { name: 'Honda City', type: 'Sedan', price: '₹1,299', color: '#3aa0ff' },
-  { name: 'Crysta Innova', type: 'SUV', price: '₹2,499', color: '#39d98a' },
-  { name: 'Toyota Fortuner', type: 'Premium SUV', price: '₹3,999', color: '#c084fc' },
+  { name: 'Maruti Baleno', type: 'Hatchback', price: '₹899', color: '#3aa0ff' },
+  { name: 'Hyundai i20', type: 'Hatchback', price: '₹999', color: '#39d98a' },
+  { name: 'Hyundai Aura', type: 'Sedan', price: '₹999', color: '#c084fc' },
+  { name: 'Skoda Slavia', type: 'Sedan', price: '₹1,499', color: '#f43f5e' },
+  { name: 'Hyundai Verna', type: 'Sedan', price: '₹1,599', color: '#eab308' },
+  { name: 'Maruti Ertiga', type: 'MPV · 7 Seater', price: '₹1,699', color: '#22d3ee' },
+  { name: 'Kia Seltos', type: 'SUV', price: '₹1,999', color: '#a3e635' },
+  { name: 'Mahindra Thar', type: 'Off-Road SUV', price: '₹2,499', color: '#fb7185' },
 ]
 
 function TiltCard({ car }) {
   const ref = useRef(null)
+  const state = useRef({ rx: 0, ry: 0, ty: 0, trx: 0, try_: 0, tty: 0, raf: 0, active: false })
+
+  const loop = () => {
+    const s = state.current
+    const el = ref.current
+    if (!el) return
+    // glide toward target — this lerp is what makes the tilt feel liquid
+    s.rx += (s.trx - s.rx) * 0.12
+    s.ry += (s.try_ - s.ry) * 0.12
+    s.ty += (s.tty - s.ty) * 0.12
+    el.style.transform = `perspective(900px) rotateX(${s.rx.toFixed(2)}deg) rotateY(${s.ry.toFixed(2)}deg) translateY(${s.ty.toFixed(2)}px)`
+    const settled = !s.active && Math.abs(s.rx) < 0.05 && Math.abs(s.ry) < 0.05
+    if (settled) { el.style.transform = ''; s.raf = 0; return }
+    s.raf = requestAnimationFrame(loop)
+  }
 
   const onMove = (e) => {
     const el = ref.current
@@ -19,12 +39,19 @@ function TiltCard({ car }) {
     const px = (e.clientX - r.left) / r.width
     const py = (e.clientY - r.top) / r.height
     const MAX = 12
-    el.style.transform = `perspective(900px) rotateX(${(py - 0.5) * -MAX * 2}deg) rotateY(${(px - 0.5) * MAX * 2}deg) translateY(-6px)`
+    const s = state.current
+    s.trx = (py - 0.5) * -MAX * 2
+    s.try_ = (px - 0.5) * MAX * 2
+    s.tty = -6
+    s.active = true
     el.style.setProperty('--mx', px * 100 + '%')
     el.style.setProperty('--my', py * 100 + '%')
+    if (!s.raf) s.raf = requestAnimationFrame(loop)
   }
   const onLeave = () => {
-    if (ref.current) ref.current.style.transform = 'perspective(900px) rotateX(0) rotateY(0)'
+    const s = state.current
+    s.trx = 0; s.try_ = 0; s.tty = 0; s.active = false
+    if (!s.raf) s.raf = requestAnimationFrame(loop)
   }
 
   return (

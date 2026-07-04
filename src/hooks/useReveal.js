@@ -62,20 +62,11 @@ export default function useReveal() {
       })
     })
 
-    // keep ScrollTrigger in sync with Lenis
-    const onScroll = () => ScrollTrigger.update()
-    const tryBind = setInterval(() => {
-      if (window.__lenis) {
-        window.__lenis.on('scroll', onScroll)
-        clearInterval(tryBind)
-      }
-    }, 60)
-
-    // refresh after first paint so triggers measure correctly
+    // Lenis (useLenis) already calls ScrollTrigger.update on scroll.
+    // Just refresh after first paint so triggers measure correctly.
     const refresh = setTimeout(() => ScrollTrigger.refresh(), 300)
 
     return () => {
-      clearInterval(tryBind)
       clearTimeout(refresh)
       ctx.revert()
     }

@@ -56,6 +56,9 @@ function CameraRig() {
     const t = state.clock.elapsedTime
     const k = Math.min(1, dt * 2.2)
 
+    // single smoothed velocity for the whole scene (Car + Road read this)
+    scrollState.smoothVel += (scrollState.velocity - scrollState.smoothVel) * Math.min(1, dt * 6)
+
     sampleShot(p, desiredPos, desiredLook)
     // idle drift + mouse parallax
     desiredPos.x += Math.sin(t * 0.25) * 0.6 + scrollState.mouseX * 2.4
@@ -94,7 +97,7 @@ export default function Scene() {
       <CameraRig />
 
       <ambientLight intensity={0.28} />
-      <directionalLight position={[6, 14, 8]} intensity={0.8} color="#aab8ff" castShadow />
+      <directionalLight position={[6, 14, 8]} intensity={0.8} color="#aab8ff" />
       <PulseLights />
 
       {/* hero car, gently floating, turned to face the road (+Z) */}
@@ -104,17 +107,18 @@ export default function Scene() {
         </group>
       </Float>
 
-      <ContactShadows position={[0, -0.54, 0]} opacity={0.6} scale={28} blur={2.6} far={9} color="#000000" />
+      {/* frames={1} — bake once; car barely moves, re-render every frame is wasted */}
+      <ContactShadows frames={1} position={[0, -0.54, 0]} opacity={0.6} scale={28} blur={2.6} far={9} color="#000000" />
 
-      {/* wet asphalt — reflective night road */}
+      {/* wet asphalt — reflective night road (384px target keeps it cheap) */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.55, 0]}>
         <planeGeometry args={[160, 400]} />
         <MeshReflectorMaterial
-          resolution={512}
+          resolution={384}
           mirror={0.5}
           mixBlur={10}
           mixStrength={1.6}
-          blur={[300, 80]}
+          blur={[220, 60]}
           roughness={0.9}
           depthScale={1.1}
           minDepthThreshold={0.4}
@@ -128,9 +132,9 @@ export default function Scene() {
       <Road />
 
       {/* floating "road light" particles + stars */}
-      <Sparkles count={130} scale={[40, 20, 60]} size={5} speed={0.35} color="#ff8c38" opacity={0.7} />
-      <Sparkles count={70} scale={[30, 16, 40]} size={3} speed={0.6} color="#ffffff" opacity={0.5} />
-      <Stars radius={90} depth={50} count={1600} factor={3} saturation={0} fade speed={0.5} />
+      <Sparkles count={90} scale={[40, 20, 60]} size={5} speed={0.35} color="#ff8c38" opacity={0.7} />
+      <Sparkles count={50} scale={[30, 16, 40]} size={3} speed={0.6} color="#ffffff" opacity={0.5} />
+      <Stars radius={90} depth={50} count={1100} factor={3} saturation={0} fade speed={0.5} />
 
       {/* in-memory studio environment (no external HDR download) */}
       <Environment resolution={256} frames={1}>
@@ -142,8 +146,8 @@ export default function Scene() {
         </group>
       </Environment>
 
-      {/* cinematic postprocessing */}
-      <EffectComposer disableNormalPass multisampling={4}>
+      {/* cinematic postprocessing — no MSAA; hi-dpr + mipmap bloom cover the edges */}
+      <EffectComposer disableNormalPass multisampling={0}>
         <Bloom luminanceThreshold={0.22} luminanceSmoothing={0.9} intensity={0.95} mipmapBlur />
         <Vignette eskil={false} offset={0.22} darkness={0.9} />
       </EffectComposer>

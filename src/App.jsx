@@ -47,7 +47,7 @@ export default function App() {
       </main>
 
       <a
-        href="https://wa.me/919876543210"
+        href="https://wa.me/916353122584?text=નમસ્તે!%20મારે%20કાર%20બુક%20કરવી%20છે."
         className="wa-float"
         target="_blank"
         rel="noopener"

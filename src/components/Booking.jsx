@@ -82,9 +82,14 @@ export default function Booking() {
                 <select id="bCar" defaultValue="" required>
                   <option value="" disabled>Select a car…</option>
                   <option>Maruti Swift — Hatchback (₹799/day)</option>
-                  <option>Honda City — Sedan (₹1,299/day)</option>
-                  <option>Crysta Innova — SUV (₹2,499/day)</option>
-                  <option>Toyota Fortuner — Premium SUV (₹3,999/day)</option>
+                  <option>Maruti Baleno — Hatchback (₹899/day)</option>
+                  <option>Hyundai i20 — Hatchback (₹999/day)</option>
+                  <option>Hyundai Aura — Sedan (₹999/day)</option>
+                  <option>Skoda Slavia — Sedan (₹1,499/day)</option>
+                  <option>Hyundai Verna — Sedan (₹1,599/day)</option>
+                  <option>Maruti Ertiga — MPV 7 Seater (₹1,699/day)</option>
+                  <option>Kia Seltos — SUV (₹1,999/day)</option>
+                  <option>Mahindra Thar — Off-Road SUV (₹2,499/day)</option>
                 </select>
               </div>
             </div>

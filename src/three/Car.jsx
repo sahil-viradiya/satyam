@@ -27,8 +27,8 @@ export default function Car(props) {
   }
 
   useFrame((state, dt) => {
-    // wheels roll faster with scroll velocity
-    const spin = 2.0 + Math.min(Math.abs(scrollState.velocity) * 0.5, 9)
+    // wheels roll faster with (smoothed) scroll velocity
+    const spin = 2.0 + Math.min(Math.abs(scrollState.smoothVel) * 0.5, 9)
     wheelRot.current -= spin * dt
     wheels.current.forEach((w) => { if (w) w.rotation.x = wheelRot.current })
 
@@ -40,12 +40,12 @@ export default function Car(props) {
     tmp.copy(FLEET_COLORS[i]).lerp(FLEET_COLORS[Math.min(i + 1, FLEET_COLORS.length - 1)], f)
     bodyMaterial.color.lerp(tmp, 0.06)
 
-    // subtle lean into acceleration
+    // subtle lean into acceleration (smoothed, frame-rate independent)
     if (group.current) {
       group.current.rotation.z = THREE.MathUtils.lerp(
         group.current.rotation.z,
-        THREE.MathUtils.clamp(-scrollState.velocity * 0.006, -0.08, 0.08),
-        0.08
+        THREE.MathUtils.clamp(-scrollState.smoothVel * 0.006, -0.08, 0.08),
+        Math.min(1, dt * 5)
       )
     }
   })

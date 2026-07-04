@@ -11,7 +11,7 @@ export default function Footer() {
             <div className="logo"><Logo /> Satyam <span className="accent">Self Drive</span></div>
             <p>Rajkot's trusted self-drive car rental. Affordable, reliable, and always ready when you are.</p>
             <div className="socials">
-              <a href="https://wa.me/919876543210" target="_blank" rel="noopener" aria-label="WhatsApp" data-hover><Whatsapp /></a>
+              <a href="https://wa.me/916353122584" target="_blank" rel="noopener" aria-label="WhatsApp" data-hover><Whatsapp /></a>
               <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram" data-hover><Instagram /></a>
               <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook" data-hover><Facebook /></a>
             </div>
@@ -27,9 +27,10 @@ export default function Footer() {
 
           <div className="footer-col reveal">
             <h4>Contact</h4>
-            <a href="tel:+919876543210" data-hover>+91 98765 43210</a>
+            <p className="gj-line">📞 બુકિંગ માટે સંપર્ક કરો:</p>
+            <a href="tel:+916353122584" data-hover>+91 63531 22584</a>
             <a href="mailto:hello@satyamselfdrive.in" data-hover>hello@satyamselfdrive.in</a>
-            <p>150 Feet Ring Road,<br />Rajkot, Gujarat 360005</p>
+            <p>📍 Office No. 104, Suvrna Heights,<br />Vagad Chowkdi, Rajkot</p>
             <p>Open 24 / 7</p>
           </div>
 

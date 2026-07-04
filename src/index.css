@@ -142,6 +142,7 @@ section { position: relative; padding: 130px 0; }
   z-index: 99999;
   transform: translate(-50%, -50%);
   will-change: transform;
+  contain: layout style;
 }
 .cursor-dot { width: 8px; height: 8px; background: var(--accent); }
 .cursor-glow {
@@ -275,7 +276,7 @@ nav.scrolled {
 /* ============================================================
    FLEET
    ============================================================ */
-.fleet-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
+.fleet-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
 @media (max-width: 1100px){ .fleet-grid { grid-template-columns: repeat(2,1fr);} }
 @media (max-width: 560px){ .fleet-grid { grid-template-columns: 1fr;} }
 .car-card {
@@ -352,7 +353,7 @@ nav.scrolled {
    TESTIMONIALS
    ============================================================ */
 .testi-viewport { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-.testi-track { display: flex; gap: 24px; width: max-content; animation: scrollTesti 38s linear infinite; }
+.testi-track { display: flex; gap: 24px; width: max-content; animation: scrollTesti 38s linear infinite; will-change: transform; }
 .testi-track:hover { animation-play-state: paused; }
 @keyframes scrollTesti { from { transform: translateX(0);} to { transform: translateX(-50%);} }
 .testi-card { width: 380px; flex-shrink: 0; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: var(--radius); padding: 30px; backdrop-filter: blur(10px); }
@@ -374,6 +375,7 @@ footer { background: rgba(6,6,6,0.85); backdrop-filter: blur(10px); border-top: 
 @media (max-width: 520px){ .footer-grid { grid-template-columns: 1fr; } }
 .footer-col h4 { font-size: 1rem; font-weight: 700; margin-bottom: 20px; }
 .footer-col p, .footer-col a { color: var(--muted); font-size: 0.92rem; margin-bottom: 12px; display: block; transition: color .3s ease; }
+.footer-col .gj-line { color: var(--accent); font-weight: 600; margin-bottom: 6px; }
 .footer-col a:hover { color: var(--accent); }
 .footer-brand .logo { margin-bottom: 18px; }
 .footer-brand p { max-width: 280px; }

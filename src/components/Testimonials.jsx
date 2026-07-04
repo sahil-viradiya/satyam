@@ -2,9 +2,9 @@ import { Star } from './icons.jsx'
 
 const REVIEWS = [
   { name: 'Sanket Talaviya', role: 'Rajkot', initial: 'S', text: "Booked the Swift for a weekend trip to Dwarka. Spotless car, smooth process, fair price. Highly recommend Satyam!" },
-  { name: 'Priya Mehta', role: 'Rajkot', initial: 'P', text: "The Innova was perfect for our family trip. GPS, AC, full tank — everything just worked. Will book again." },
-  { name: 'Rohan Joshi', role: 'Morbi', initial: 'R', text: "24/7 support is real! Called at midnight, got my Fortuner sorted in minutes. Best self-drive in Rajkot." },
-  { name: 'Aisha Khan', role: 'Rajkot', initial: 'A', text: "Loved the Honda City. Clean, well maintained and the team was super friendly. Transparent pricing too." },
+  { name: 'Priya Mehta', role: 'Rajkot', initial: 'P', text: "The Ertiga was perfect for our family trip — 7 seats, GPS, AC, full tank. Everything just worked. Will book again." },
+  { name: 'Rohan Joshi', role: 'Morbi', initial: 'R', text: "24/7 support is real! Called at midnight, got my Thar sorted in minutes. Best self-drive in Rajkot." },
+  { name: 'Aisha Khan', role: 'Rajkot', initial: 'A', text: "Loved the Verna. Clean, well maintained and the team was super friendly. Transparent pricing too." },
   { name: 'Vikram Patel', role: 'Jamnagar', initial: 'V', text: "Affordable and reliable. No hidden charges, quick paperwork, easy pickup. Five stars from me!" },
 ]
 

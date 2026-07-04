@@ -76,7 +76,8 @@ export default function Road() {
   const drive = useRef(0)
 
   useFrame((_, dt) => {
-    drive.current += dt * 5 + Math.abs(scrollState.velocity) * 0.25
+    // smoothed velocity → no stutter when scroll direction flips
+    drive.current += dt * (5 + Math.abs(scrollState.smoothVel) * 14)
     const d = drive.current
     // wrap each group within one spacing unit → seamless infinite road
     if (dashes.current) dashes.current.position.z = (d % DASH_SPACING)
