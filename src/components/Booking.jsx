@@ -81,15 +81,15 @@ export default function Booking() {
                 <label htmlFor="bCar">Car Type</label>
                 <select id="bCar" defaultValue="" required>
                   <option value="" disabled>Select a car…</option>
-                  <option>Maruti Swift — Hatchback (₹799/day)</option>
-                  <option>Maruti Baleno — Hatchback (₹899/day)</option>
-                  <option>Hyundai i20 — Hatchback (₹999/day)</option>
-                  <option>Hyundai Aura — Sedan (₹999/day)</option>
-                  <option>Skoda Slavia — Sedan (₹1,499/day)</option>
-                  <option>Hyundai Verna — Sedan (₹1,599/day)</option>
-                  <option>Maruti Ertiga — MPV 7 Seater (₹1,699/day)</option>
-                  <option>Kia Seltos — SUV (₹1,999/day)</option>
-                  <option>Mahindra Thar — Off-Road SUV (₹2,499/day)</option>
+                  <option>Maruti Swift — Hatchback (₹2,000 / 24hr)</option>
+                  <option>Maruti Baleno — Hatchback (₹2,500 / 24hr)</option>
+                  <option>Hyundai i20 — Hatchback (₹2,200–2,500 / 24hr)</option>
+                  <option>Hyundai Aura — Sedan (₹2,400 / 24hr)</option>
+                  <option>Maruti Ertiga — MPV 7 Seater (₹2,500 / 24hr)</option>
+                  <option>Hyundai Verna — Sedan Diesel (₹4,000 / 24hr)</option>
+                  <option>Mahindra Thar 4×4 — Off-Road SUV (₹4,500 / 24hr)</option>
+                  <option>Kia Seltos — SUV Sunroof (₹5,000 / 24hr)</option>
+                  <option>Skoda Slavia — Sedan Auto (₹5,000 / 24hr)</option>
                 </select>
               </div>
             </div>

@@ -1,6 +1,6 @@
 const STATS = [
   { target: 500, suffix: '+', label: 'Happy Customers' },
-  { target: 20, suffix: '+', label: 'Cars Available' },
+  { target: 12, suffix: '+', label: 'Cars Available' },
   { target: 3, suffix: '+', label: 'Years Experience' },
   { target: 24, suffix: '/7', label: 'Support' },
 ]

@@ -44,7 +44,7 @@ export default function Hero() {
         </div>
         <div className="hero-stats">
           <div><div className="hs-num">500<span>+</span></div><div className="hs-label">Happy Clients</div></div>
-          <div><div className="hs-num">20<span>+</span></div><div className="hs-label">Cars Ready</div></div>
+          <div><div className="hs-num">12<span>+</span></div><div className="hs-label">Cars Ready</div></div>
           <div><div className="hs-num">24/<span>7</span></div><div className="hs-label">Support</div></div>
         </div>
       </div>
